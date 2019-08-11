@@ -1,0 +1,35 @@
+
+    <!-- Banner area -->
+    <section class="banner_area" data-stellar-background-ratio="0.5">
+            <h2 *ngIf="cate">{{cate.name}}</h2>
+            <ol class="breadcrumb">
+                <li><a [routerLink]="['/home']">Home</a></li>
+                <li><a  class="active">Product-Listing</a></li>
+            </ol>
+        </section>
+        <!-- End Banner area -->
+    
+        <!-- blog-2 area -->
+        <section class="blog_tow_area">
+            <div class="container">
+               <div class="row blog_tow_row">
+                    <div class="col-md-4 col-sm-6" *ngFor="let product of products">
+                        <div class="renovation">
+                            <img src="{{product.image}}" alt="">
+                            <div class="renovation_content">
+                                <a class="clipboard" routerLink="/cate/{{product.cateId}}/products/{{product.id}}"><i class="fa fa-clipboard" aria-hidden="true"></i></a>
+                                <a class="tittle" routerLink="/cate/{{product.cateId}}/products/{{product.id}}">{{product.name}}</a>
+                                <div class="date_comment">
+                                    <a><i class="fa fa-calendar" aria-hidden="true"></i>October 20, 2016</a>
+                                    <a><i class="fa fa-commenting-o" aria-hidden="true"></i>3</a>
+                                </div>
+                                <p>Price: {{product.price}} $</p>
+                                <p>{{product.desc}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+               </div>
+            </div>
+        </section>
+        <!-- End blog-2 area -->

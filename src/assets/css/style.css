@@ -259,7 +259,7 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
   border: 0;
   margin: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 1;
   top: 0;
   box-shadow: 0px 0px 20px 0px rgba(21, 47, 95, 0.2);
 }

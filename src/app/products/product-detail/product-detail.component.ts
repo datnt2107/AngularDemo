@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/Product';
+import { Product } from 'src/app/products/Product';
 import {ActivatedRoute} from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { Categories } from 'src/app/categories/Categories';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,8 +12,9 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductDetailComponent implements OnInit {
   product : Product;
+  
   constructor(
-    private route : ActivatedRoute,
+    private routes : ActivatedRoute,
     private productService : ProductService
   ) { }
 
@@ -19,10 +22,11 @@ export class ProductDetailComponent implements OnInit {
     this.getProduct();
   }
   getProduct(){
-    this.route.params.subscribe(param => {
-      this.productService.getProduct(param.id).subscribe(data => {
+    this.routes.params.subscribe(param => {
+      this.productService.getProduct(param.productId,param.cateId).subscribe(data => {
         this.product = data;
       })
     })
   }
+  
 }

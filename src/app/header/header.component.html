@@ -61,18 +61,16 @@
               </ul> -->
                     </li>
                     <li class="dropdown submenu">
+                        <a  class="dropdown-toggle" data-toggle="dropdown">Category</a>
+                        <ul class="dropdown-menu other_dropdwn">
+                            <li *ngFor="let cate of cates">
+                                <a routerLink="/cate/{{cate.id}}">{{cate.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li class="dropdown submenu">
                         <a [routerLink]="['/products']" class="dropdown-toggle" data-toggle="dropdown">Products</a>
-                        <!-- <ul class="dropdown-menu other_dropdwn">
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="services-2.html">Services-2</a></li>
-                        </ul> -->
-                    </li>
-                    <li class="dropdown submenu">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Blog</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="blog.html">Blog</a></li>
-                        </ul> -->
-                    </li>
+                    </li> -->
                     <li><a [routerLink]="['/contact']">Contact</a></li>
                     <li><a href="#" class="nav_searchFrom"><i class="fa fa-search"></i></a></li>
                 </ul>

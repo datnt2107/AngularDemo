@@ -5,4 +5,5 @@ export class Product{
     img: string;
     price: number;
     status: boolean;
+    cateId: number;
 }

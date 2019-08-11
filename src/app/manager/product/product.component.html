@@ -1,0 +1,70 @@
+<div class="container">
+    <h4 class="mt-5"></h4>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Desc short</th>
+                <th scope="col">Actions</th>
+                <th scope="col">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">Add
+                        Product</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <th scope="row">{{product.id}}</th>
+                <td><a>{{product.name}}</a></td>
+                <td>{{product.price}} $</td>
+                <td>{{product.desc}}</td>
+                <td>
+                    <button class="btn btn-primary"
+                        routerLink="/manager/{{product.cateId}}/products/{{product.id}}">Edit</button>
+                    <button class="btn btn-danger" (click)="removeProduct(product)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Modal add product -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Add Product</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Product name</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.name" name="productName">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="Category" id="" class="form-control" [(ngModel)]="product.cateId">
+                            <option *ngFor="let cate of cates" value="{{cate.id}}">{{cate.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="number" class="form-control" [(ngModel)]="product.price" name="productPrice">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.desc" name="productDesc">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button data-dismiss="modal" (click)="addProduct()" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

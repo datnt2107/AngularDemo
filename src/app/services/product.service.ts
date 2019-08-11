@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../Product';
+import { Product } from '../products/Product';
 
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,18 +8,26 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductService {
-  private API : string = "http://5d44d958d823c300147719fc.mockapi.io/products";
+  private API : string = "http://5d44d958d823c300147719fc.mockapi.io/";
   constructor(private http: HttpClient) { }
   getProductListing(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.API);
+    return this.http.get<Product[]>(`${this.API}/cate`);
   }
-  deleteProduct(id){
-    return this.http.delete<Product[]>(`${this.API}/${id}`)
+  
+  getProduct(id,cateId): Observable<Product>{
+    return this.http.get<Product>(`${this.API}/cate/${cateId}/products/${id}`);
   }
-  getProduct(id): Observable<Product>{
-    return this.http.get<Product>(`${this.API}/${id}`);
+
+  addProduct(product,cateId): Observable<Product> {
+    return this.http.post<Product>(`${this.API}/cate/${cateId}/products`, product);
   }
-  saveProduct(product): Observable<Product>{
-    return this.http.put<Product>(`${this.API}/${product.id}`, product);
+  
+  saveProduct(product, cateId,productID): Observable<Product>{
+    return this.http.put<Product>(`${this.API}/cate/${cateId}/products/${productID}`, product);
   }
+
+  deleteProduct(cateId,productID): Observable<Product>{
+    return this.http.delete<Product>(`${this.API}/cate/${cateId}/products/${productID}`);
+  }
+  
 }
