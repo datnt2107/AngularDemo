@@ -15,7 +15,7 @@
                <div class="row blog_tow_row">
                     <div class="col-md-4 col-sm-6" *ngFor="let product of products">
                         <div class="renovation">
-                            <img src="{{product.image}}" alt="">
+                            <img src="{{product.image}}" alt="" width="360">
                             <div class="renovation_content">
                                 <a class="clipboard" routerLink="/cate/{{product.cateId}}/products/{{product.id}}"><i class="fa fa-clipboard" aria-hidden="true"></i></a>
                                 <a class="tittle" routerLink="/cate/{{product.cateId}}/products/{{product.id}}">{{product.name}}</a>

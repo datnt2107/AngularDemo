@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/products/Product';
 import { CategoryService } from 'src/app/services/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit {
   products : Product[];
   product: Product = new Product();
   cates : Categories[];
+  cate :Categories;
 
   constructor(
     private categoryService: CategoryService,
@@ -24,7 +25,16 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    this.getCate();
+    this.getCates();
+    this.getCateName();
+  }
+  getCateName(){
+    this.routes.params.subscribe(param => {
+      this.categoryService.getCate(param.cateId).subscribe(data => {
+        // console.log(data);
+        this.cate = data;
+      })
+    })
   }
   getProducts(){
     this.routes.params.subscribe(param => {
@@ -33,14 +43,14 @@ export class ProductComponent implements OnInit {
       })
     })
   }
-  getCate(){
+  getCates(){
     this.categoryService.getCategories().subscribe(data =>{
       this.cates = data;
     })
   }
   addProduct(){
     this.productService.addProduct(this.product,this.product.cateId).subscribe(data => {
-      
+      this.products.push(data);
     })
   }
   removeProduct(product){
@@ -49,4 +59,11 @@ export class ProductComponent implements OnInit {
       this.products = this.products.filter(item => item.id != data.id);
     })
   }
+  
+    // public popoverTitle: string = 'Detete product';
+    // public popoverMessage: string = 'Are you sure you want to delete?';
+    // public confirmClicked: boolean = false;
+    // public cancelClicked: boolean = false;
+    
+    
 }

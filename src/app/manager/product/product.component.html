@@ -1,5 +1,8 @@
 <div class="container">
-    <h4 class="mt-5"></h4>
+    <br><br>
+    <div class="col-md-12" *ngIf="cate">
+        <h2>Danh sách sản phẩm của danh mục {{cate.name}}</h2>
+    </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -23,7 +26,7 @@
                 <td>
                     <button class="btn btn-primary"
                         routerLink="/manager/{{product.cateId}}/products/{{product.id}}">Edit</button>
-                    <button class="btn btn-danger" (click)="removeProduct(product)">Delete</button>
+                    <button class="btn btn-danger"  (click)="removeProduct(product)" >Delete</button>
                 </td>
             </tr>
         </tbody>
